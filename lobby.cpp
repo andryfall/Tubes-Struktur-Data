@@ -55,10 +55,38 @@ void showAllLobby(list_Lobby L){
     }
 }
 
-bool findLobby(list_Lobby L, int id){
+adrLobby findLobby(list_Lobby L, int id){
+    adrLobby P;
+    if(first(L)!=NULL){
+        P = first(L);
+        while(P!=NULL & infoLobby(P).idLobby != id){
+            P = nextLobby(P);
+        }
+    } else {
+        return NULL;   
+    }
     
+    if(infoLobby(P).idLobby == id){
+        return P;
+    } else {
+        return NULL;   
+    }
 }
 
-void showLobbyData(list_Lobby L, adrLobby P){
-    
+void showLobbyData(list_Lobby &L, list_User &U){
+    adrLobby Q;
+    adrUser R;
+    Q = findLobby(L, P);
+    if(Q == NULL) {
+        cout << "Lobby Tidak Ditemukan" << endl;   
+    } else {
+        P = first(L);
+        while(P!=NULL){
+            R = first(U);
+            while(R!=NULL){
+                if(Q   
+            }
+        }
+           
+    }
 }
