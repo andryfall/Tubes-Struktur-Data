@@ -28,9 +28,9 @@ struct list_Lobby{
 };
 
 void createLobby(list_Lobby &L, infotype_lobby lobbyBaru);
-void removePlayer(list_Lobby &L, );
+void removePlayer(list_Lobby &L, adrLobby &P);
 void deleteLobby(list_Lobby &L, adrLobby &P);
 void showAllLobby(list_Lobby L);
-bool findLobby(list_Lobby L, infotype_lobby x);
+bool findLobby(list_Lobby L, int id);
 void showLobbyData(list_Lobby L, adrLobby P);
 #endif // LOBBY_H_INCLUDED
