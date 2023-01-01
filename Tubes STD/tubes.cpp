@@ -180,8 +180,8 @@ void deletePlayer(list_player &U, adrPlayer &p){
             Q = nextPlayer(Q);
         }
         p = nextPlayer(Q);
-	    nextPlayer(Q) = first(L);
-	    nextPlayer(p) = NULL;
+	nextPlayer(Q) = first(L);
+	nextPlayer(p) = NULL;
     }
 }
 void deleteLobby(list_Lobby &L, adrLobby &p){
@@ -190,6 +190,7 @@ void deleteLobby(list_Lobby &L, adrLobby &p){
         cout << "Lobby Kosong" << endl;
     } else if (nextLobby(first(L))==NULL){
         p = first(L);
+	next(p) = NULL;
         first(L) = NULL;
     } else {
         Q = first(L);
