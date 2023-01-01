@@ -204,7 +204,32 @@ void deleteLobby(list_Lobby &L, adrLobby &p){
     }   
 }
 int countPlayer(adrLobby p);
-void showAllLobby(list_Lobby L);
-void showDetailLobby(list_Lobby L, adrLobby p);
+void showAllLobby(list_Lobby L){
+	adrLobby P;
+	if(first(L)==NULL){
+		cout << "Lobby Kosong" << endl;
+	} else {
+		P = first(L);
+		while(P!=NULL){
+			cout << info(P).nomor << endl;
+			cout << info(P).totalPlayer << endl;
+			cout << info(P).rankPlayer << endl;
+			adrPlayer R = first(L);
+			while(R!=first(L)){
+				if(lobby(R)==P){
+					cout << info(R).playerName << endl;
+					cout << info(R).rank << endl;
+				}
+				R = nextPlayer(R);
+			}
+			P = nextLobby(P);
+		}
+	}
+	
+}
+void showDetailLobby(list_Lobby L, adrLobby p){
+
+}
+	
 
 
