@@ -164,8 +164,44 @@ void connectToLobby(list_Lobby &L, list_player &U){
 void searchPlayerInLobby(list_Lobby &L, string playerName, int nomor){
 
 }
-void deletePlayer(list_player &U, adrPlayer p);
-void deleteLobby(list_Lobby &L, adrLobby p);
+void deletePlayer(list_player &U, adrPlayer &p){
+    adrPlayer Q;
+    if (first(L)==NULL){
+        cout << "Player Tidak Ada" << endl;   
+    } else if (nextPlayer(first(L))==first(L)){
+        p = first(L);
+        Q = first(L);
+        first(L) = nextPlayer(first(L));
+        nextPlayer(Q) = first(L);
+        nextPlayer(p) = NULL;
+    } else {
+        Q = first(L);
+        while(nextPlayer(Q)!=first(L)){
+            Q = nextPlayer(Q);
+        }
+        p = nextPlayer(Q);
+	    nextPlayer(Q) = first(L);
+	    nextPlayer(p) = NULL;
+    }
+}
+void deleteLobby(list_Lobby &L, adrLobby &p){
+    adrLobby Q;
+    if(first(L) == NULL){
+        cout << "Lobby Kosong" << endl;
+    } else if (nextLobby(first(L))==NULL){
+        p = first(L);
+        first(L) = NULL;
+    } else {
+        Q = first(L);
+        while(nextLobby(Q)!=NULL){
+            Q = nextLobby(Q);   
+        }
+        first(L) = nextLobby(p);
+        nextLobby(Q) = nextLobby(p);
+        nextLobby(p) = NULL;
+           
+    }   
+}
 int countPlayer(adrLobby p);
 void showAllLobby(list_Lobby L);
 void showDetailLobby(list_Lobby L, adrLobby p);
