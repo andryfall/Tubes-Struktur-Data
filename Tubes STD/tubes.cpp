@@ -211,14 +211,14 @@ void showAllLobby(list_Lobby L){
 	} else {
 		P = first(L);
 		while(P!=NULL){
-			cout << info(P).nomor << endl;
-			cout << info(P).totalPlayer << endl;
-			cout << info(P).rankPlayer << endl;
+			cout << "Nomor Lobby-" << info(P).nomor << endl;
+			cout << "Total Player: " << info(P).totalPlayer << endl;
+			cout << "Rank: " << info(P).rankPlayer << endl;
 			adrPlayer R = first(L);
 			while(R!=first(L)){
 				if(lobby(R)==P){
-					cout << info(R).playerName << endl;
-					cout << info(R).rank << endl;
+					cout << "Nama Player: " << info(R).playerName << endl;
+					cout << "Rank Player: " << info(R).rankPlayer << endl;
 				}
 				R = nextPlayer(R);
 			}
@@ -228,7 +228,14 @@ void showAllLobby(list_Lobby L){
 	
 }
 void showDetailLobby(list_Lobby L, adrLobby p){
-
+	adrLobby Q = searchLobby(L, info(p).rankPlayer);
+	if (Q==NULL){
+		cout << "Lobby Tidak Ditemukan" << endl;
+	} else {
+		cout << "Nomor Lobby-" <<  info(P).nomor << endl;
+		cout << "Total Player: " << info(P).totalPlayer << endl;
+		cout << "Rank: " << info(P).rankPlayer << endl;
+	}
 }
 	
 
