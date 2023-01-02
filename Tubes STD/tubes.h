@@ -61,7 +61,7 @@ void searchPlayerInLobby(list_Lobby &L, string playerName, int nomor);
 void deletePlayer(list_player &U, adrPlayer p);
 void deleteLobby(list_Lobby &L, adrLobby p);
 int countPlayer(adrLobby p);
-void showAllLobby(list_Lobby L);
+void showAllLobby(list_Lobby L, list_player U);
 void showDetailLobby(list_Lobby L, adrLobby p);
 
 #endif // TUBES_H_INCLUDED
