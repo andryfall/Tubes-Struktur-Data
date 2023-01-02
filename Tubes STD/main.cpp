@@ -11,6 +11,7 @@ int main()
     infotype_player x;
     adrPlayer p;
 
+    //baru testing
     createListLobby(L);
     createListPlayer(U);
 
@@ -18,40 +19,15 @@ int main()
     x.rankPlayer = "Bronze";
     insertPlayer(U, newPlayer(x));
 
-    p = searchPlayer(U, "Saya");
-    cout <<infoPlayer(p).playerName<<endl;
-    cout <<infoPlayer(p).rankPlayer<<endl;
-
     x.playerName = "Dia";
     x.rankPlayer = "Bronze";
     insertPlayer(U, newPlayer(x));
-
-    p = searchPlayer(U, "Dia");
-    cout <<infoPlayer(p).playerName<<endl;
-    cout <<infoPlayer(p).rankPlayer<<endl;
 
     x.playerName = "Kami";
     x.rankPlayer = "Silver";
     insertPlayer(U, newPlayer(x));
 
-    p = searchPlayer(U, "Kami");
-    cout <<infoPlayer(p).playerName<<endl;
-    cout <<infoPlayer(p).rankPlayer<<endl;
 
-    cout<<endl;
-
-    adrPlayer t = first(U);
-    cout<<infoPlayer(t).playerName<<endl;
-    t = nextPlayer(t);
-    cout<<infoPlayer(t).playerName<<endl;
-    t = nextPlayer(t);
-    cout<<infoPlayer(t).playerName<<endl;
-    t = nextPlayer(t);
-    cout<<infoPlayer(t).playerName<<endl;
-
-
-
-    cout<<endl;
 
     connectToLobby(L, U);
 
@@ -75,7 +51,26 @@ int main()
     cout <<infoLobby(n).nomor << endl;
 
 
+    cout<<"================================================="<<endl;
+    showAllLobby(L, U);
+    cout<<"================================================="<<endl;
 
+
+    adrPlayer dP;
+    dP = searchPlayer(U, "Dia");
+    deletePlayer(U, dP);
+
+    cout<<"================================================="<<endl;
+    showAllLobby(L, U);
+    cout<<"================================================="<<endl;
+
+    adrLobby dL;
+    dL = searchLobby(L, "Silver");
+    deleteLobby(L, dL);
+
+    cout<<"================================================="<<endl;
+    showAllLobby(L, U);
+    cout<<"================================================="<<endl;
 
 
 }
