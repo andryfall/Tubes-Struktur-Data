@@ -57,11 +57,12 @@ void insertLobby(list_Lobby &L, adrLobby p);
 adrPlayer searchPlayer(list_player &U, string playerName);
 void connectToLobby(list_Lobby &L, list_player &U);
 adrLobby searchLobby(list_Lobby &L, string rankPlayer);
-void searchPlayerInLobby(list_Lobby &L, string playerName, int nomor);
+void searchPlayerInLobby(list_Lobby &L,list_player U, string playerName, int nomor);
 void deletePlayer(list_player &U, adrPlayer p);
 void deleteLobby(list_Lobby &L, adrLobby p);
-int countPlayer(adrLobby p);
+int countPlayer(list_player U,  adrLobby p);
 void showAllLobby(list_Lobby L, list_player U);
-void showDetailLobby(list_Lobby L, adrLobby p);
+void showAvailableLobby(list_Lobby L);
+int selectMenu();
 
 #endif // TUBES_H_INCLUDED
