@@ -161,20 +161,38 @@ void connectToLobby(list_Lobby &L, list_player &U){
         }
     }
 }
-void searchPlayerInLobby(list_Lobby &L, string playerName, int nomor){
+void searchPlayerInLobby(list_Lobby &L, list_player U, string playerName, int nomor){
+    adrPlayer p;
+    adrLobby q;
 
+    p = searchPlayer(U, playerName);
+
+    if(p == NULL){
+        cout<<"Tidak ada player dengan nama tersebut"<<endl;
+    }else{
+        q = lobby(p);
+        if (q == NULL){
+            cout<<"Player tidak berada dalam lobby manapun"<<endl;
+        }else if(infoLobby(q).nomor == nomor){
+            cout<<"Player ada dalam lobby tersebut"<<endl;
+        }
+    }
 }
 void deletePlayer(list_player &U, adrPlayer p){
     adrPlayer Q, R, prec;
+    adrLobby t;
     if (first(U)==NULL){
         cout << "Player Tidak Ada" << endl;
     } else if (nextPlayer(first(U))==first(U)){
+        t = lobby(p);
         p = first(U);
         Q = first(U);
         first(U) = nextPlayer(first(U));
         nextPlayer(Q) = first(U);
         nextPlayer(p) = NULL;
+        infoLobby(t).totalPlayer--;
     } else {
+        t = lobby(p);
         Q = first(U);
         R = first(U);
 
@@ -190,6 +208,7 @@ void deletePlayer(list_player &U, adrPlayer p){
             first(U) = nextPlayer(first(U));
             nextPlayer(Q) = first(U);
             nextPlayer(p) = NULL;
+            infoLobby(t).totalPlayer--;
         }else if(p == R){
             while(nextPlayer(nextPlayer(Q)) != first(U)){
                 Q = nextPlayer(Q);
@@ -197,6 +216,7 @@ void deletePlayer(list_player &U, adrPlayer p){
             p = nextPlayer(Q);
             nextPlayer(Q) = first(U);
             nextPlayer(p) = NULL;
+            infoLobby(t).totalPlayer--;
         }else{
             while(Q != p){
                 prec = Q;
@@ -205,6 +225,7 @@ void deletePlayer(list_player &U, adrPlayer p){
             p = nextPlayer(prec);
             nextPlayer(prec) = nextPlayer(p);
             nextPlayer(p) = NULL;
+            infoLobby(t).totalPlayer--;
         }
     }
 }
@@ -245,9 +266,36 @@ void deleteLobby(list_Lobby &L, adrLobby p){
         }
     }
 }
-int countPlayer(adrLobby p);
+int countPlayer(list_player U,  adrLobby p){
+    adrPlayer r;
+    adrLobby q;
+    int total = 0;
+    r = first(U);
+
+    if(p == NULL){
+        cout<<"Player kosong"<<endl;
+    }else if(nextPlayer(r) == first(U)){
+        q = lobby(r);
+        if(q == p){
+            return 1;
+        }
+    }else{
+        while(nextPlayer(r) != first(U)){
+            if (q == p){
+                total++;
+            }
+            r = nextPlayer(r);
+        }
+        if (q == p){
+                total++;
+        }
+        return total;
+    }
+}
 void showAllLobby(list_Lobby L, list_player U){
 	adrLobby P;
+	cout<<endl;
+	cout<<"======All Lobby and Players======="<<endl;
 	if(first(L)==NULL){
 		cout << "Lobby Kosong" << endl;
 	} else {
@@ -258,37 +306,62 @@ void showAllLobby(list_Lobby L, list_player U){
 			cout << "Rank: " << infoLobby(P).rankPlayer << endl;
 			adrPlayer R = first(U);
 			adrLobby Q = lobby(R);
+            cout << "Player dalam Lobby : ";
 			if(nextPlayer(R) == first(U)){
                 if(Q == P){
-                    cout<< "Nama Player : " <<infoPlayer(R).playerName <<endl;
-                    cout<< "Rank Player : " <<infoPlayer(R).rankPlayer <<endl;
+                    cout<< infoPlayer(R).playerName << endl;
                 }
 			}else{
                 while(nextPlayer(R) != first(U)){
                     if(Q == P){
-                        cout<< "Nama Player : " <<infoPlayer(R).playerName <<endl;
-                        cout<< "Rank Player : " <<infoPlayer(R).rankPlayer <<endl;
+                        cout<< infoPlayer(R).playerName << " - ";
                     }
                     R = nextPlayer(R);
                 }
                 adrLobby Q = lobby(R);
                 if(Q == P){
-                    cout<< "Nama Player : " <<infoPlayer(R).playerName <<endl;
-                    cout<< "Rank Player : " <<infoPlayer(R).rankPlayer <<endl;
+                    cout<< infoPlayer(R).playerName << " - ";
                 }
 			}
+			if (infoLobby(Q).totalPlayer == 4){
+                cout<<"FULL"<<endl;
+			}else{
+                cout<<"...Waiting For More Players..."<<endl;
+			}
+			cout<<endl;
 			P = nextLobby(P);
 		}
 	}
 }
 void showAvailableLobby(list_Lobby L){
     adrLobby p = first(L);
+    cout<<endl;
+    cout<<"======All Available Lobby======="<<endl;
     while(p != NULL){
         cout << "Nomor Lobby-" << infoLobby(p).nomor << endl;
         cout << "Total Player: " << infoLobby(p).totalPlayer << endl;
         cout << "Rank: " << infoLobby(p).rankPlayer << endl;
+        cout<<endl;
         p = nextLobby(p);
     }
+    cout<<endl;
 }
 
+int selectMenu(){
+    cout << "======MENU======="<<endl;
+    cout<<"1. Menambahkan Player(s) baru"<<endl;
+    cout<<"2. Start Matchmaking"<<endl;
+    cout<<"3. Tampilkan semua lobby yang ada"<<endl;
+    cout<<"4. Tampilkan semua lobby dan playernya"<<endl;
+    cout<<"5. Cari dan tampilkan data pemain"<<endl;
+    cout<<"6. Cek player dalam suatu lobby"<<endl;
+    cout<<"7. Delete player"<<endl;
+    cout<<"8. Delete Lobby"<<endl;
+    cout<<"0. Exit"<<endl;
+    cout<< "Masukkan menu: ";
+    int input = 0;
+    cin >> input;
 
+    return input;
+
+}
