@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1672841818 source:c:\users\andry\documents\new folder (5)\tubes std\main.cpp
+	"tubes.h"
+	<iostream>
+
+1672835965 c:\users\andry\documents\new folder (5)\tubes std\tubes.h
+	<iostream>
+
+1672841818 source:c:\users\andry\documents\new folder (5)\tubes std\tubes.cpp
+	"tubes.h"
+
+1672843663 source:c:\users\andry\documents\new folder (5)\matchmaking program-100% finished\tubes.cpp
+	"tubes.h"
+
+1672835965 c:\users\andry\documents\new folder (5)\matchmaking program-100% finished\tubes.h
+	<iostream>
+
+1672843670 source:c:\users\andry\documents\new folder (5)\matchmaking program-100% finished\main.cpp
+	"tubes.h"
+	<iostream>
+
